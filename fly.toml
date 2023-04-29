@@ -1,0 +1,23 @@
+# fly.toml app configuration file generated for lost-and-found on 2023-04-29T14:55:26+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "lost-and-found"
+primary_region = "waw"
+
+[build]
+  [build.args]
+[mounts]
+  source="lost_and_found_db"
+  destination="/db/"
+
+[env]
+  PORT = "8080"
+  DATABASE_URL="file:../db/db.sqlite"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
